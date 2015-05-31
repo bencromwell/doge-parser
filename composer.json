@@ -1,0 +1,19 @@
+{
+    "name": "bcromwell/doges",
+    "authors": [
+        {
+            "name": "Ben Cromwell"
+        }
+    ],
+    "require": {
+        "zendframework/zend-dom": "~2.4",
+        "zendframework/zend-mail": "~2.4",
+        "aura/sql": "~2.4",
+        "aura/sqlQuery": "^2.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Dogs\\": "src//"
+        }
+    }
+}
