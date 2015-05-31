@@ -25,6 +25,8 @@ class Urls
         $centreUrl = $this->baseUrl . 'rehoming/dogs/filters/man~~~~~n~';
         $pagedUrl  = $centreUrl . '/page/';
 
+        $urls[] = $centreUrl;
+
         for ($i = 2; $i <= 5; $i++) {
             $urls[] = $pagedUrl . $i;
         }
