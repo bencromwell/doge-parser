@@ -20,7 +20,7 @@ $dogeMapper    = new \Dogs\DogeMapper($dbh);
 $content       = new \Dogs\MailContent();
 $foundNewDoges = 0;
 
-$newDoges = $parser->getNewDoges();
+$newDoges = $parser->getDoges();
 
 foreach ($newDoges as $newDoge) {
     // doges can be marked as new but we might already have them in our local DB
