@@ -31,9 +31,4 @@ class Doge
         $this->imageHref = $imageHref;
     }
 
-    public function saveAsNew()
-    {
-        
-    }
-
 }
