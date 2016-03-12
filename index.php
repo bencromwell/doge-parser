@@ -11,34 +11,26 @@ $dbh = new \Aura\Sql\ExtendedPdo(
     $config['db']['pass']
 );
 
-$baseUrl = $config['baseUrl'];
-$parser  = new \Dogs\Parser($baseUrl);
+foreach ($config['instances'] as $id => $instance) {
 
-$parser->parseUrls((new \Dogs\Urls($baseUrl))->getUrls());
+    $parser = new \Parser\MicroDataParser(
+        $instance['base_url'],
+        $instance['results_selector'],
+        $instance['name_selector'],
+        $instance['link_selector']
+    );
 
-$dogeMapper    = new \Dogs\DogeMapper($dbh);
-$content       = new \Dogs\MailContent();
-$foundNewDoges = 0;
+    $mapper = new \Parser\ItemMapper($dbh, $id);
 
-$newDoges = $parser->getDoges();
+    $mailContent = new \Parser\MailContent();
 
-foreach ($newDoges as $newDoge) {
-    // doges can be marked as new but we might already have them in our local DB
-    $exists = $dogeMapper->getDogeForHref($newDoge->href);
-
-    if (!$exists) {
-        $foundNewDoges ++;
-        $dogeMapper->saveDoge($newDoge);
-        $content->addDoge($newDoge);
-    }
-}
-
-if ($foundNewDoges > 0) {
-    $mailer = new \Dogs\Mailer(
+    $mailer = new \Parser\Mailer(
         $config['email']['from'],
         $config['email']['to'],
         $config['email']['subject']
     );
 
-    $mailer->sendMail($content->getOutput());
+    $runner = new \Parser\Runner($parser, $mapper, $mailContent, $mailer);
+
+    $runner->run($instance['urls']);
 }

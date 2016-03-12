@@ -1,18 +1,18 @@
 <?php
 
-namespace Dogs;
+namespace Parser;
 
 class MailContent
 {
 
-    protected $doges = [];
+    protected $items = [];
 
     /**
-     * @param Doge $doge
+     * @param Item $doge
      */
-    public function addDoge(Doge $doge)
+    public function addItem(Item $doge)
     {
-        $this->doges[] = $doge;
+        $this->items[] = $doge;
     }
 
     /**
@@ -21,14 +21,14 @@ class MailContent
     public function getOutput()
     {
         $content = '';
-        $content .= 'Found ' . count($this->doges) . ' new doges.<br>' . PHP_EOL;
+        $content .= 'Found ' . count($this->items) . ' new items.<br>' . PHP_EOL;
         $content .= '<ul>';
 
-        foreach ($this->doges as $doge) {
+        foreach ($this->items as $item) {
             $content .= '<li>';
-            $content .= $doge->name . '<br>' . PHP_EOL;
-            $content .= '<img src="' . $doge->imageHref . '"><br>' . PHP_EOL;
-            $content .= $doge->href . PHP_EOL . PHP_EOL;
+            $content .= $item->name . '<br>' . PHP_EOL;
+            $content .= '<img src="' . $item->imageHref . '"><br>' . PHP_EOL;
+            $content .= $item->href . PHP_EOL . PHP_EOL;
             $content .= '</li>';
         }
 

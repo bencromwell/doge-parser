@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'linclark\\MicrodataPHP\\' => array($vendorDir . '/linclark/microdata-php/src', $vendorDir . '/linclark/microdata-php/tests/src'),
     'Zend\\Validator\\' => array($vendorDir . '/zendframework/zend-validator/src'),
     'Zend\\Stdlib\\' => array($vendorDir . '/zendframework/zend-stdlib/src'),
     'Zend\\ServiceManager\\' => array($vendorDir . '/zendframework/zend-servicemanager/src'),
@@ -15,7 +16,7 @@ return array(
     'Zend\\Loader\\' => array($vendorDir . '/zendframework/zend-loader/src'),
     'Zend\\Dom\\' => array($vendorDir . '/zendframework/zend-dom/src'),
     'Zend\\Crypt\\' => array($vendorDir . '/zendframework/zend-crypt/src'),
-    'Dogs\\' => array($baseDir . '/src'),
+    'Parser\\' => array($baseDir . '/src'),
     'Aura\\Sql\\' => array($vendorDir . '/aura/sql/src'),
     'Aura\\SqlQuery\\' => array($vendorDir . '/aura/sqlquery/src'),
 );

@@ -4,7 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "c0557f03d89d97629fe9c3a81133b464",
+    "hash": "678aff9e30a573b5c3db02708074aebc",
+    "content-hash": "1b5bc8fef18f97716673563cd15cd247",
     "packages": [
         {
             "name": "aura/sql",
@@ -125,6 +126,39 @@
                 "update"
             ],
             "time": "2015-03-27 20:09:21"
+        },
+        {
+            "name": "linclark/microdata-php",
+            "version": "2.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/linclark/MicrodataPHP.git",
+                "reference": "0da6156fb67bbd824d7632d73df852c7745b0e8e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/linclark/MicrodataPHP/zipball/0da6156fb67bbd824d7632d73df852c7745b0e8e",
+                "reference": "0da6156fb67bbd824d7632d73df852c7745b0e8e",
+                "shasum": ""
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.1.x-dev"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "linclark\\MicrodataPHP\\": [
+                        "src/",
+                        "tests/src/"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Extracts microdata from HTML using PHP.",
+            "time": "2014-09-03 07:16:20"
         },
         {
             "name": "zendframework/zend-crypt",

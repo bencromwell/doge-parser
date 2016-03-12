@@ -1,6 +1,6 @@
 <?php
 
-namespace Dogs;
+namespace Parser;
 
 use Zend\Mail\Message as MailMessage;
 use Zend\Mail\Transport\Sendmail;

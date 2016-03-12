@@ -1,5 +1,5 @@
 {
-    "name": "bcromwell/doges",
+    "name": "bcromwell/parser",
     "authors": [
         {
             "name": "Ben Cromwell"
@@ -9,11 +9,12 @@
         "zendframework/zend-dom": "~2.4",
         "zendframework/zend-mail": "~2.4",
         "aura/sql": "~2.4",
-        "aura/sqlQuery": "^2.4"
+        "aura/sqlQuery": "^2.4",
+        "linclark/microdata-php": "^2.0"
     },
     "autoload": {
         "psr-4": {
-            "Dogs\\": "src//"
+            "Parser\\": "src//"
         }
     }
 }

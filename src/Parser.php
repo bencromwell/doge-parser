@@ -1,27 +1,38 @@
 <?php
 
-namespace Dogs;
+namespace Parser;
 
 class Parser
 {
 
     /** @var string */
-    private $baseUrl;
+    protected $baseUrl;
 
-    /** @var Doge[] */
-    private $doges;
+    /** @var Item[] */
+    protected $items;
 
-    /** @var Doge[] */
-    private $newDoges;
+    /** @var string */
+    private $resultsSelector;
+
+    /** @var string */
+    private $nameSelector;
+
+    /** @var string */
+    private $linkSelector;
 
     /**
      * @param string $baseUrl
+     * @param string $resultsSelector
+     * @param string $nameSelector
+     * @param string $linkSelector
      */
-    public function __construct($baseUrl)
+    public function __construct($baseUrl, $resultsSelector, $nameSelector, $linkSelector)
     {
-        $this->baseUrl  = $baseUrl;
-        $this->doges    = [];
-        $this->newDoges = [];
+        $this->baseUrl = $baseUrl;
+        $this->resultsSelector = $resultsSelector;
+        $this->nameSelector = $nameSelector;
+        $this->linkSelector = $linkSelector;
+        $this->items = [];
     }
 
     /**
@@ -40,41 +51,33 @@ class Parser
     public function parseUrl($url)
     {
         $html = str_get_html(file_get_contents($url));
-        $results = $html->find('#BodyContent_DogList1_dvMainGrid a');
+        $results = $html->find($this->resultsSelector);
+
+        // @todo get baseUrl from url
+        $baseUrl = '';
 
         /** @var \simple_html_dom_node $element */
         foreach ($results as $element) {
 
-            $name = $element->find('h3')[0]->innertext();
-            $isNew = count($element->find('.label--new')) > 0;
-            $link = $this->baseUrl . $element->href;
+            $name = $element->find($this->nameSelector)[0]->innertext();
+            $link = $baseUrl . $element->href;
+
+
             $image = $element->find('img')[0]->src;
-            $image = $this->baseUrl . $image;
+            $image = $baseUrl . $image;
 
-            $doge = new Doge($name, $isNew, $link, $image);
+            $item = new Item($name, $link, $image);
 
-            $this->doges[] = $doge;
-
-            if ($isNew) {
-                $this->newDoges[] = $doge;
-            }
+            $this->items[] = $item;
         }
     }
 
     /**
-     * @return Doge[]
+     * @return Item[]
      */
-    public function getDoges()
+    public function getItems()
     {
-        return $this->doges;
-    }
-
-    /**
-     * @return Doge[]
-     */
-    public function getNewDoges()
-    {
-        return $this->newDoges;
+        return $this->items;
     }
 
 }
