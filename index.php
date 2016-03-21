@@ -11,7 +11,19 @@ $dbh = new \Aura\Sql\ExtendedPdo(
     $config['db']['pass']
 );
 
+$loader = new Twig_Loader_Filesystem(__DIR__ . '/mail_templates');
+$twig = new Twig_Environment($loader, array(
+    'cache' => __DIR__ . '/cache',
+));
+
+$baseFont = 'font-family: \'Open Sans\', Arial, sans-serif; font-size: 100%; line-height: 1.6em;';
+
+$twig->addGlobal('baseFont', $baseFont);
+$twig->addGlobal('baseStyle', ' style="' . $baseFont . ' margin: 0; padding: 0;"');
+$twig->addGlobal('hr', '<hr style="border: 1px #f6f6f6 solid">');
+
 foreach ($config['instances'] as $id => $instance) {
+    $twig->addGlobal('title', $id);
 
     $parser = new \Parser\MicroDataParser(
         $instance['base_url'],
@@ -22,7 +34,7 @@ foreach ($config['instances'] as $id => $instance) {
 
     $mapper = new \Parser\ItemMapper($dbh, $id);
 
-    $mailContent = new \Parser\MailContent();
+    $mailContent = new \Parser\MailContent($twig->loadTemplate('items.html.twig'));
 
     $mailer = new \Parser\Mailer(
         $config['email']['from'],

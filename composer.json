@@ -10,7 +10,8 @@
         "zendframework/zend-mail": "~2.4",
         "aura/sql": "~2.4",
         "aura/sqlQuery": "^2.4",
-        "linclark/microdata-php": "^2.0"
+        "linclark/microdata-php": "^2.0",
+        "twig/twig": "~1.0"
     },
     "autoload": {
         "psr-4": {

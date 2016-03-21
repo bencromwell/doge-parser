@@ -1,0 +1,44 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+
+<h3>
+    Found {{ items | length }} new items.
+</h3>
+
+{% for item in items %}
+    <div>
+        <p style="font-weight: bold;">
+            <a href="{{ item.href }}">
+                {% if item.price %}
+                    ({{ item.price }})&nbsp;
+                {% endif %}
+
+                {{ item.name }}
+            </a>
+        </p>
+
+        <p>
+            <img src="{{ item.imageHref }}">
+        </p>
+
+        {% if item.description %}
+            <p>
+                {{ item.description | nl2br }}
+            </p>
+        {% endif %}
+
+        {% if item.price %}
+            <p>
+                <strong>{{ item.price }}</strong>
+            </p>
+        {% endif %}
+
+        {{ item.href }}
+    </div>
+
+    {{ hr | raw }}
+
+{% endfor %}
+
+{% endblock %}

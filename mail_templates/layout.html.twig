@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>{{ title }}</title>
+    <style type="text/css">
+        @font-face {
+            font-family: 'Open Sans';
+            font-style: normal;
+            font-weight: 400;
+            src: local('Open Sans'), local('OpenSans'), url(http://themes.googleusercontent.com/static/fonts/opensans/v6/cJZKeOuBrn4kERxqtaUH3bO3LdcAZYWl9Si6vvxL-qU.woff) format('woff');
+        }
+
+        table.fixed-width-font {
+            font-family: 'Courier New', sans-serif;
+        }
+    </style>
+</head>
+<body
+    style="{{ baseFont }} -webkit-font-smoothing: antialiased; height: 100%; -webkit-text-size-adjust: none; width: 100% !important; margin: 0; padding: 0;">
+
+<!-- body -->
+<table class="body-wrap" bgcolor="#f6f6f6" style="{{ baseFont }} width: 640px; margin: 0; padding: 20px;">
+    <tr{{ baseStyle }}>
+        <td{{ baseStyle }}></td>
+        <td class="container" bgcolor="#ffffff"
+            style="{{ baseFont }} clear: both !important; display: block !important; max-width: 600px !important; margin: 0 0; padding: 20px; border: 1px solid #f0f0f0;">
+
+            {% block content %}{% endblock %}
+
+            <p style="font-size: 80%;">
+                From The Notifier
+            </p>
+
+        </td>
+        <td{{ baseStyle }}></td>
+    </tr>
+</table>
+<!-- /body -->
+</body>
+</html>
