@@ -5,14 +5,15 @@ namespace Parser;
 class MailContent
 {
 
+    /** @var Item[] */
     protected $items = [];
 
     /**
-     * @param Item $doge
+     * @param Item $item
      */
-    public function addItem(Item $doge)
+    public function addItem(Item $item)
     {
-        $this->items[] = $doge;
+        $this->items[] = $item;
     }
 
     /**
@@ -28,6 +29,15 @@ class MailContent
             $content .= '<li>';
             $content .= $item->name . '<br>' . PHP_EOL;
             $content .= '<img src="' . $item->imageHref . '"><br>' . PHP_EOL;
+
+            if ($item->hasDescription()) {
+                $content .= '<p>' . nl2br($item->description) . '</p>' . PHP_EOL;
+            }
+
+            if ($item->hasPrice()) {
+                $content .= '<strong>' . $item->price . '</strong>' . PHP_EOL;
+            }
+
             $content .= $item->href . PHP_EOL . PHP_EOL;
             $content .= '</li>';
         }

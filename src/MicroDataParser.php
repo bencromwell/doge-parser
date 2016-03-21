@@ -26,7 +26,14 @@ class MicroDataParser extends Parser
                     }
                 }
 
-                $this->items[] = new Item($name, $url, $imageUrl);
+                $description = $item->properties['description'][0];
+                $price = $item->properties['price'][0];
+
+                $item = new Item($name, $url, $imageUrl);
+
+                $item->setDescription($description)->setPrice($price);
+
+                $this->items[] = $item;
             }
         }
     }
