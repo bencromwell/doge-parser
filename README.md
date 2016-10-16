@@ -34,3 +34,7 @@ return [
     ],
 ];
 ```
+
+You would install this project as a cron to run as often as you want. It cycles over the `instances` in the config and indexes the items into its database using the instance key as a namespace. 
+
+The `results_selector` is the root element for each item on the page. It will loop over each one it finds and find `http://schema.org/Product` items to extract information from.
