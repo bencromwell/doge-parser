@@ -1,7 +1,6 @@
 <?php
 
 require ('vendor/autoload.php');
-require ('simplehtmldom_1_5/simple_html_dom.php');
 
 $config = require('config/config.php');
 
