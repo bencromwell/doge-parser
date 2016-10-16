@@ -16,7 +16,7 @@ class MicroDataParser extends Parser
             if ($item->type[0] === 'http://schema.org/Product' && $item->properties['url'][0] !== '') {
 
                 $url = $this->baseUrl . $item->properties['url'][0];
-                $name = $item->properties['name'][0];
+                $name = $this->valueFromProperty($item, 'name', '');
 
                 $imageUrl = null;
                 foreach ($item->properties['image'] as $image) {
@@ -26,16 +26,34 @@ class MicroDataParser extends Parser
                     }
                 }
 
-                $description = $item->properties['description'][0];
-                $price = $item->properties['price'][0];
+                $description = $this->valueFromProperty($item, 'description');
+                $price = $this->valueFromProperty($item, 'price');
 
                 $item = new Item($name, $url, $imageUrl);
 
-                $item->setDescription($description)->setPrice($price);
+                if (!is_null($description)) {
+                    $item->setDescription($description);
+                }
+
+                if (!is_null($price)) {
+                    $item->setPrice($price);
+                }
 
                 $this->items[] = $item;
             }
         }
+    }
+
+    /**
+     * @param object $item
+     * @param string $key
+     * @param mixed|null $default
+     *
+     * @return mixed|null
+     */
+    private function valueFromProperty($item, $key, $default = null)
+    {
+        return isset($item->properties[$key]) ? $item->properties[$key][0] : $default;
     }
 
 }
